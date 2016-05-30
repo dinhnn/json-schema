@@ -6,3 +6,6 @@ target
 .fbExcludeFilterFile
 .pmd
 .pmdruleset.xml
+*.iml
+.DS_Store
+.idea/

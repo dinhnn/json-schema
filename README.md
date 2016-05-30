@@ -43,8 +43,8 @@ Add the following to your `pom.xml`:
 
 
 ```java
-import org.everit.json.schema.Schema;
-import org.everit.json.schema.loader.SchemaLoader;
+import Schema;
+import SchemaLoader;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 // ...
@@ -161,8 +161,8 @@ Starting from version `1.2.0` the library supports the [`"format"` keyword](http
 
 The library also supports adding custom format validators. To use a custom validator basically you have to
 
- * create your own validation in a class implementing the `org.everit.json.schema.FormatValidator` interface
- * bind your validator to a name in a `org.everit.json.schema.loader.SchemaLoader.SchemaLoaderBuilder` instance before loading the actual schema
+ * create your own validation in a class implementing the `FormatValidator` interface
+ * bind your validator to a name in a `SchemaLoader.SchemaLoaderBuilder` instance before loading the actual schema
 
 ### Example
 

@@ -33,7 +33,7 @@ to fetch the remote schemas relative from this address
 You can find a good example for all of these in the `tests/src/test/resources/org/everit/json/schema/issues/issue17` testcase.
 
 If you successfully created your testcase, then it will fail with an `AssertionError` with a message like
-"validation failed with: org.everit.json.schema.ValidationException:..." or "did not throw ValidationException for invalid subject",
+"validation failed with: ValidationException:..." or "did not throw ValidationException for invalid subject",
 and then you are ready to send a pull request.
 
 
