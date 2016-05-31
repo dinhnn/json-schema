@@ -27,7 +27,7 @@ public class ExtendTest {
 
   static {
     OBJECTS = JsonObjectHelper.load(
-        ExtendTest.class.getResourceAsStream("/org/everit/jsonvalidator/merge-testcases.json"));
+        ExtendTest.class.getResourceAsStream("/io/vertx/jsonvalidator/merge-testcases.json"));
   }
 
   @Test

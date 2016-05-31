@@ -45,12 +45,12 @@ public class CustomFormatValidatorTest {
   @Test
   public void test() {
     SchemaLoader schemaLoader = SchemaLoader.builder()
-        .schemaJson(read("/org/everit/jsonvalidator/customformat-schema.json"))
+        .schemaJson(read("/io/vertx/jsonvalidator/customformat-schema.json"))
         .addFormatValidator("evenlength", new EvenCharNumValidator())
         .build();
     try {
       schemaLoader.load().build()
-          .validate(read("/org/everit/jsonvalidator/customformat-data.json"));
+          .validate(read("/io/vertx/jsonvalidator/customformat-data.json"));
       Assert.fail("did not throw exception");
     } catch (ValidationException ve) {
     }

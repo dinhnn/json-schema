@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * {@code String} schema validator.
@@ -114,11 +115,18 @@ public class StringSchema extends Schema {
     this.maxLength = builder.maxLength;
     this.requiresString = builder.requiresString;
     if (builder.pattern != null) {
-      this.pattern = Pattern.compile(builder.pattern);
+    	this.pattern = parsePattern(builder.pattern);    	
     } else {
       this.pattern = null;
     }
     this.formatValidator = builder.formatValidator;
+  }
+  private static Pattern parsePattern(String pattern){
+  	try{
+  		return Pattern.compile(pattern);
+  	}catch(PatternSyntaxException e){
+  		return null;
+  	}
   }
 
   public Integer getMaxLength() {

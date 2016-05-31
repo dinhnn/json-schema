@@ -21,7 +21,7 @@ import org.junit.Test;
 public class ArraySchemaTest {
 
   private static final JsonObject ARRAYS = JsonObjectHelper.load((
-      ArraySchemaTest.class.getResourceAsStream("/org/everit/jsonvalidator/arraytestcases.json")));
+      ArraySchemaTest.class.getResourceAsStream("/io/vertx/jsonvalidator/arraytestcases.json")));
 
   @Test
   public void additionalItemsSchema() {

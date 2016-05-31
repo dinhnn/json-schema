@@ -50,7 +50,7 @@ public class TestSuiteTest {
   @Parameters(name = "{2}")
   public static List<Object[]> params() {
     List<Object[]> rval = new ArrayList<>();
-    Reflections refs = new Reflections("org.everit.json.schema.draft4",
+    Reflections refs = new Reflections("io.vertx.json.schema.draft4",
         new ResourcesScanner());
     Set<String> paths = refs.getResources(Pattern.compile(".*\\.json"));
     for (String path : paths) {
@@ -83,10 +83,10 @@ public class TestSuiteTest {
     ServletHandler handler = new ServletHandler();
     server.setHandler(handler);
     handler.addServletWithMapping(new ServletHolder(new IssueServlet(new File(ServletSupport.class
-        .getResource("/org/everit/json/schema/draft4/remotes").toURI()))), "/*");
+        .getResource("/io/vertx/json/schema/draft4/remotes").toURI()))), "/*");
     server.start();
   }
-
+  
   @AfterClass
   public static void stopJetty() throws Exception {
     if (server != null) {

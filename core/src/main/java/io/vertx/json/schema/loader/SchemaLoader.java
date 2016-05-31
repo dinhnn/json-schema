@@ -527,8 +527,11 @@ public class SchemaLoader {
   private Schema.Builder loadForExplicitType(final String typeString) {
     try {
       switch (typeString) {
+      	case "color":
+      	case "date":
         case "string":
           return buildStringSchema();
+        case "long":
         case "integer":
           return buildNumberSchema().requiresInteger(true);
         case "number":

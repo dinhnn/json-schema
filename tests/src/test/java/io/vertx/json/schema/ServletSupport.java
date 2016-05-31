@@ -22,6 +22,7 @@ import java.util.Objects;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.component.LifeCycle;
 
 public class ServletSupport {
 
@@ -42,20 +43,39 @@ public class ServletSupport {
   public ServletSupport(final File documentRoot) {
     this.documentRoot = Objects.requireNonNull(documentRoot, "documentRoot cannot be null");
   }
-
-  public void run(final Runnable runnable) {
-    initJetty();
-    runnable.run();
-    stopJetty();
-  }
-
   private Server server;
-
-  public void initJetty() {
+  public void run(final Runnable runnable) {  
     server = new Server(1234);
     ServletHandler handler = new ServletHandler();
     server.setHandler(handler);
     handler.addServletWithMapping(new ServletHolder(new IssueServlet(documentRoot)), "/*");
+    server.addLifeCycleListener(new LifeCycle.Listener() {
+			
+			@Override
+			public void lifeCycleStopping(LifeCycle arg0) {
+			}
+			
+			@Override
+			public void lifeCycleStopped(LifeCycle arg0) {
+				
+			}
+			
+			@Override
+			public void lifeCycleStarting(LifeCycle arg0) {
+				
+			}
+			
+			@Override
+			public void lifeCycleStarted(LifeCycle arg0) {
+				runnable.run();
+				stopJetty();
+			}
+			
+			@Override
+			public void lifeCycleFailure(LifeCycle arg0, Throwable arg1) {
+				
+			}
+		});
     try {
       server.start();
     } catch (Exception e) {

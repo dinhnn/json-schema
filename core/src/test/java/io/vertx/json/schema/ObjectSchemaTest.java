@@ -23,7 +23,7 @@ public class ObjectSchemaTest {
 
   private static final JsonObject OBJECTS = JsonObjectHelper.load(
       ObjectSchemaTest.class
-          .getResourceAsStream("/org/everit/jsonvalidator/objecttestcases.json"));
+          .getResourceAsStream("/io/vertx/jsonvalidator/objecttestcases.json"));
 
   @Test
   public void additionalPropertiesOnEmptyObject() {

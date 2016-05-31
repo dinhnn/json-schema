@@ -27,7 +27,7 @@ public class RelativeURITest {
 
   @Test
   public void test() throws URISyntaxException {
-    ServletSupport.withDocumentRoot("/org/everit/json/schema/relative-uri/")
+    ServletSupport.withDocumentRoot("/io/vertx/json/schema/relative-uri/")
         .run(this::run);
   }
 
@@ -36,7 +36,7 @@ public class RelativeURITest {
         .builder()
         .resolutionScope("http://localhost:1234/schema/")
         .schemaJson(JsonObjectHelper.load((getClass().getResourceAsStream(
-                "/org/everit/json/schema/relative-uri/schema/main.json"))))
+                "/io/vertx/json/schema/relative-uri/schema/main.json"))))
             .build().load().build();
   }
 }

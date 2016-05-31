@@ -26,11 +26,11 @@ public class MetaSchemaTest {
 
     JsonObject jsonSchema = JsonObjectHelper.load((
         MetaSchemaTest.class
-            .getResourceAsStream("/org/everit/json/schema/json-schema-draft-04.json")));
+            .getResourceAsStream("/io/vertx/json/schema/json-schema-draft-04.json")));
 
     JsonObject jsonSubject = JsonObjectHelper.load((
         MetaSchemaTest.class
-            .getResourceAsStream("/org/everit/json/schema/json-schema-draft-04.json")));
+            .getResourceAsStream("/io/vertx/json/schema/json-schema-draft-04.json")));
 
     Schema schema = SchemaLoader.load(jsonSchema);
     schema.validate(jsonSubject);

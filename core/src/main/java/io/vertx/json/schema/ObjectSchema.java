@@ -335,7 +335,7 @@ public class ObjectSchema extends Schema {
 
   private List<ValidationException> testRequiredProperties(final JsonObject subject) {
     return requiredProperties.stream()
-        .filter(key -> !subject.containsKey(key))
+        .filter(key -> subject.getValue(key)==null)
         .map(missingKey -> String.format("required key [%s] not found", missingKey))
         .map(excMessage -> new ValidationException(this, excMessage))
         .collect(Collectors.toList());

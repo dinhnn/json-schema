@@ -45,7 +45,7 @@ public class IssueTest {
     List<Object[]> rval = new ArrayList<>();
     try {
       File issuesDir = new File(
-          IssueTest.class.getResource("/org/everit/json/schema/issues").toURI());
+          IssueTest.class.getResource("/io/vertx/json/schema/issues").toURI());
       for (File issue : issuesDir.listFiles()) {
         rval.add(new Object[] { issue, issue.getName() });
       }
@@ -71,9 +71,9 @@ public class IssueTest {
         .findFirst();
   }
 
-  private void initJetty(final File documentRoot) {
+  private void initJetty(final File documentRoot,Runnable r) {
     servletSupport = new ServletSupport(documentRoot);
-    servletSupport.initJetty();
+    servletSupport.run(r);
   }
 
   private Schema loadSchema() {
@@ -97,11 +97,15 @@ public class IssueTest {
 
   @Test
   public void test() {
-    fileByName("remotes").ifPresent(this::initJetty);
-    Schema schema = loadSchema();
-    fileByName("subject-valid.json").ifPresent(file -> validate(file, schema, true));
-    fileByName("subject-invalid.json").ifPresent(file -> validate(file, schema, false));
-    stopJetty();
+    fileByName("remotes").ifPresent(f->{
+    	this.initJetty(f,()->{
+    		Schema schema = loadSchema();
+        fileByName("subject-valid.json").ifPresent(file -> validate(file, schema, true));
+        fileByName("subject-invalid.json").ifPresent(file -> validate(file, schema, false));
+        stopJetty();
+    	});
+    });
+    
   }
 
   private void validate(final File file, final Schema schema, final boolean shouldBeValid) {

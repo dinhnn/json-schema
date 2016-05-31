@@ -28,7 +28,7 @@ public class ResolutionScopeTest {
 
   static {
     InputStream stream = SchemaLoaderTest.class.getResourceAsStream(
-        "/org/everit/jsonvalidator/testschemas.json");
+        "/io/vertx/jsonvalidator/testschemas.json");
     ALL_SCHEMAS = JsonObjectHelper.load(stream);
   }
 

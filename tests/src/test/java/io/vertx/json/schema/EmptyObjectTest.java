@@ -25,7 +25,7 @@ public class EmptyObjectTest {
 
         JsonObject jsonSchema = JsonObjectHelper.load(
                 MetaSchemaTest.class
-                        .getResourceAsStream("/org/everit/json/schema/json-schema-draft-04.json"));
+                        .getResourceAsStream("/io/vertx/json/schema/json-schema-draft-04.json"));
 
         JsonObject jsonSubject = new JsonObject("{\n" +
                 "  \"type\": \"object\",\n" +

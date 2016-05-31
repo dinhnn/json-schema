@@ -24,7 +24,7 @@ public class InvalidObjectInArrayTest {
 
   private JsonObject readObject(final String fileName) {
     return JsonObjectHelper.load(getClass()
-        .getResourceAsStream("/org/everit/json/schema/invalidobjectinarray/" + fileName));
+        .getResourceAsStream("/io/vertx/json/schema/invalidobjectinarray/" + fileName));
   }
 
   @Test

@@ -17,10 +17,12 @@ package io.vertx.json.schema;
 
 import javax.annotation.Generated;
 
+import io.vertx.core.shareddata.Shareable;
+
 /**
  * Superclass of all other schema validator classes of this package.
  */
-public abstract class Schema {
+public abstract class Schema implements Shareable {
 
   /**
    * Abstract builder class for the builder classes of {@code Schema} subclasses. This builder is
