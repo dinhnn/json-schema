@@ -17,6 +17,7 @@ package io.vertx.json.schema;
 
 import javax.annotation.Generated;
 
+import io.vertx.core.json.JsonObject;
 import io.vertx.core.shareddata.Shareable;
 
 /**
@@ -31,6 +32,14 @@ public abstract class Schema implements Shareable {
    *
    *          the type of the schema being built by the builder subclass.
    */
+	JsonObject jsonSchema;
+	public Schema setJsonSchema(JsonObject jsonSchema) {
+		this.jsonSchema = jsonSchema;
+		return this;
+	}
+	public JsonObject getJsonSchema() {
+		return jsonSchema;
+	}
   public abstract static class Builder {
 
     private String title;

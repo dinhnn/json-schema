@@ -15,6 +15,23 @@
  */
 package io.vertx.json.schema.loader;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import io.vertx.json.schema.ArraySchema;
@@ -38,28 +55,12 @@ import io.vertx.json.schema.internal.HostnameFormatValidator;
 import io.vertx.json.schema.internal.IPV4Validator;
 import io.vertx.json.schema.internal.IPV6Validator;
 import io.vertx.json.schema.internal.URIFormatValidator;
+import io.vertx.json.schema.internal.URLFormatValidator;
 import io.vertx.json.schema.loader.internal.DefaultSchemaClient;
 import io.vertx.json.schema.loader.internal.JSONPointer;
 import io.vertx.json.schema.loader.internal.JSONPointer.QueryResult;
 import io.vertx.json.schema.loader.internal.ReferenceResolver;
 import io.vertx.json.schema.loader.internal.TypeBasedMultiplexer;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Loads a JSON schema's JSON representation into schema validator instances.
@@ -95,6 +96,7 @@ public class SchemaLoader {
     {
       formatValidators.put("date-time", new DateTimeFormatValidator());
       formatValidators.put("uri", new URIFormatValidator());
+      formatValidators.put("url", new URLFormatValidator());
       formatValidators.put("email", new EmailFormatValidator());
       formatValidators.put("ipv4", new IPV4Validator());
       formatValidators.put("ipv6", new IPV6Validator());
@@ -219,7 +221,7 @@ public class SchemaLoader {
         .schemaJson(schemaJson)
         .httpClient(httpClient)
         .build();
-    return loader.load().build();
+    return loader.load().build().setJsonSchema(schemaJson);
   }
 
   /**

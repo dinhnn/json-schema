@@ -24,6 +24,7 @@ import io.vertx.json.schema.internal.HostnameFormatValidator;
 import io.vertx.json.schema.internal.IPV4Validator;
 import io.vertx.json.schema.internal.IPV6Validator;
 import io.vertx.json.schema.internal.URIFormatValidator;
+import io.vertx.json.schema.internal.URLFormatValidator;
 
 /**
  * Implementations perform the validation against the "format" keyword (see JSON Schema spec section
@@ -63,6 +64,8 @@ public interface FormatValidator {
         return new EmailFormatValidator();
       case "hostname":
         return new HostnameFormatValidator();
+      case "url":
+        return new URLFormatValidator();
       case "uri":
         return new URIFormatValidator();
       case "ipv4":

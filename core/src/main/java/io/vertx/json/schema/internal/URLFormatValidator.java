@@ -15,8 +15,8 @@
  */
 package io.vertx.json.schema.internal;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Optional;
 
 import io.vertx.json.schema.FormatValidator;
@@ -24,15 +24,15 @@ import io.vertx.json.schema.FormatValidator;
 /**
  * Implementation of the "uri" format value.
  */
-public class URIFormatValidator implements FormatValidator {
+public class URLFormatValidator implements FormatValidator {
 
   @Override
   public Optional<String> validate(final String subject) {
     try {
-      new URI(subject);
+      new URL(subject);
       return Optional.empty();
-    } catch (URISyntaxException | NullPointerException e) {
-      return Optional.of(String.format("[%s] is not a valid URI", subject));
+    } catch (MalformedURLException | NullPointerException e) {
+      return Optional.of(String.format("[%s] is not a valid URL", subject));
     }
   }
 }
